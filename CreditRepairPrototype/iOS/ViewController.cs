@@ -23,10 +23,12 @@ namespace CreditRepairPrototype.iOS
 				var title = string.Format ("{0} clicks!", count++);
 				Button.SetTitle (title, UIControlState.Normal);
 			};
+
 			// Test JSON reading
 			List<Question> questions = JsonReader.Instance.ReadJsonArrayToList<Question>( Assembly.GetAssembly(typeof(JsonReader)), "data.json" );
 			Console.WriteLine ("Test JSON: " + questions [0].QuestionString);
-			// send request
+
+			// Send request
 			RequestHelper.Instance.SendRequest(
 				WebAPI._uri_bitstamp, 
 				WebAPI._api_tickerHour, 
@@ -34,13 +36,27 @@ namespace CreditRepairPrototype.iOS
 				Response, 
 				BadResponse
 			);
-			// send request with specific object response
+
+			// Send request and parse result in custom object
 			RequestHelper.Instance.SendRequest<TickerResult>(
 				WebAPI._uri_bitstamp,
 				WebAPI._api_tickerHour,
 				null,
 				ResponseWithObject,
 				BadResponse);
+			
+			// Send request for parse html page.
+			// Parse only urls in 'class = "emphasized"'
+			ParseHtmlSettings parseSettings = new ParseHtmlSettings("class", "emphasized");
+			parseSettings.ContentInclusion = "http";
+			RequestHelper.Instance.ReadHTMLPage (
+				WebAPI._uri_bitstamp,
+				"",
+				null,
+				parseSettings,
+				ResponseWithHtmlPart,
+				BadResponse
+			);
 		}
 
 		void Response(string data)
@@ -50,7 +66,15 @@ namespace CreditRepairPrototype.iOS
 
 		void ResponseWithObject(TickerResult data)
 		{
-			Console.WriteLine("Test request with object-response: " +  data);
+			Console.WriteLine("Test request with object-response: " +  data.Ask);
+		}
+
+		void ResponseWithHtmlPart(List<ParsedHtmlNode> data)
+		{			
+			Console.WriteLine("Test parsing HTML: successful! ");
+			foreach (ParsedHtmlNode node in data) {
+				Console.WriteLine("URL from site: " +  node.NodeValue);
+			}
 		}
 
 		void BadResponse(string error)
