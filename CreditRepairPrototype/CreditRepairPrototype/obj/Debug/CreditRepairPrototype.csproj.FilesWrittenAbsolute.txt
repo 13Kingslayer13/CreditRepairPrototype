@@ -10,5 +10,6 @@
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/bin/Debug/System.Net.Http.Primitives.dll
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/bin/Debug/System.Net.Http.Extensions.dll
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/bin/Debug/Newtonsoft.Json.dll
-/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/bin/Debug/HtmlAgilityPack-PCL.dll
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/bin/Debug/HtmlAgilityPack.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/bin/Debug/SQLitePCL.raw.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/bin/Debug/SQLite-net.dll

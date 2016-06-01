@@ -57,6 +57,15 @@ namespace CreditRepairPrototype.iOS
 				ResponseWithHtmlPart,
 				BadResponse
 			);
+
+			// Test database: update item in db
+			User user = DatabaseAPI_iOS.Instance.GetUser ();
+			if (user.Email == null) {
+				Console.WriteLine ("Test database: User added!");
+				user.Email = "ololo@test.net";
+			}
+			DatabaseAPI_iOS.Instance.UpdateUser (user);
+			Console.WriteLine ("Test database: User updated - " + user.Email);
 		}
 
 		void Response(string data)
@@ -73,7 +82,7 @@ namespace CreditRepairPrototype.iOS
 		{			
 			Console.WriteLine("Test parsing HTML: successful! ");
 			foreach (ParsedHtmlNode node in data) {
-				Console.WriteLine("URL from site: " +  node.NodeValue);
+				//Console.WriteLine("URL from site: " +  node.NodeValue);
 			}
 		}
 

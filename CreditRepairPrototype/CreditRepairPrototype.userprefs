@@ -1,22 +1,17 @@
 ﻿<Properties StartupItem="iOS/CreditRepairPrototype.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.Workbench ActiveDocument="iOS/ViewController.cs">
     <Files>
-      <File FileName="CreditRepairPrototype/data.json" Line="7" Column="2" />
-      <File FileName="CreditRepairPrototype/Models/Question.cs" Line="1" Column="1" />
-      <File FileName="iOS/ViewController.cs" Line="95" Column="1" />
-      <File FileName="CreditRepairPrototype/Helpers/RequestHelper.cs" Line="73" Column="7" />
-      <File FileName="CreditRepairPrototype/Helpers/JsonReader.cs" Line="80" Column="46" />
-      <File FileName="CreditRepairPrototype/Helpers/UniversalHelper.cs" Line="18" Column="2" />
-      <File FileName="CreditRepairPrototype/Models/ParsedHtmlNode.cs" Line="16" Column="27" />
-      <File FileName="CreditRepairPrototype/Helpers/WebAPI.cs" Line="7" Column="75" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="iOS/ViewController.cs" Line="61" Column="6" />
+      <File FileName="CreditRepairPrototype/Helpers/DatabaseAccessHelper.cs" Line="46" Column="1" />
+      <File FileName="CreditRepairPrototype/DatabaseAPI.cs" Line="20" Column="1" />
+      <File FileName="CreditRepairPrototype/Models/DatabaseModels/User.cs" Line="9" Column="4" />
+      <File FileName="CreditRepairPrototype/Helpers/Debugger.cs" Line="9" Column="30" />
+      <File FileName="CreditRepairPrototype/Models/DatabaseModels/DatabaseItem.cs" Line="7" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/CreditRepairPrototype/Helpers/RequestHelper.cs" line="64" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

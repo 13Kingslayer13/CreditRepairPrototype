@@ -13,11 +13,11 @@
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/CreditRepairPrototype.iOS.exe
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/obj/iPhoneSimulator/Debug/CreditRepairPrototype.iOS.exe
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/obj/iPhoneSimulator/Debug/CreditRepairPrototype.iOS.exe.mdb
-/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/HtmlAgilityPack-PCL.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/Newtonsoft.Json.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/RestSharp.Portable.Core.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/RestSharp.Portable.HttpClient.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/HtmlAgilityPack.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/SQLite-net.dll
+/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/SQLitePCL.raw.dll
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/CreditRepairPrototype.dll
 /Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/CreditRepairPrototype.dll.mdb
-/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/RestSharp.Portable.HttpClient.dll
-/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/RestSharp.Portable.Core.dll
-/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/Newtonsoft.Json.dll
-/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/System.Net.Http.Primitives.dll
-/Users/artem/Documents/CreditRepairPrototype/CreditRepairPrototype/iOS/bin/iPhoneSimulator/Debug/HtmlAgilityPack.dll
