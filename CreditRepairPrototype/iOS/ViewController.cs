@@ -29,19 +29,17 @@ namespace CreditRepairPrototype.iOS
 			Console.WriteLine ("Test JSON: " + questions [0].QuestionString);
 
 			// Send request
-			RequestHelper.Instance.SendRequest(
-				WebAPI._uri_bitstamp, 
-				WebAPI._api_tickerHour, 
-				null, 
+			RequestHelper.Instance.SendRequestNative(
+				WebAPI._uri_bitstamp + WebAPI._api_tickerHour, 
+				RequestHTTPMethod.GET,
 				Response, 
 				BadResponse
 			);
 
 			// Send request and parse result in custom object
-			RequestHelper.Instance.SendRequest<TickerResult>(
-				WebAPI._uri_bitstamp,
-				WebAPI._api_tickerHour,
-				null,
+			RequestHelper.Instance.SendRequestNative<TickerResult>(
+				WebAPI._uri_bitstamp + WebAPI._api_tickerHour,
+				RequestHTTPMethod.GET,			
 				ResponseWithObject,
 				BadResponse);
 			

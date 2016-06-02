@@ -1,53 +1,142 @@
 ﻿using System;
+using System.Text;
 using System.Linq;
+using System.Net.Http;
 using System.Collections.Generic;
-using RestSharp.Portable.HttpClient;
-using RestSharp.Portable;
 using HtmlAgilityPack;
+
+using Newtonsoft.Json;
 
 namespace CreditRepairPrototype
 {
+	public enum RequestHTTPMethod
+	{
+		GET, POST, PUT, DELETE
+	}
+
     public class RequestHelper : Singleton<RequestHelper>
-    {     
-        public async void SendRequest(string uri, string apiCommand, object data, Action<string> successCallback = null, Action<string> errorCallback = null)
-        {            
-            try
-            {
-                using (var client = new RestClient(uri)) {
-					var request = apiCommand == "" ? new RestRequest() : new RestRequest(apiCommand);
-                    request.AddBody(data);
-					var response = await client.Execute(request);
-                    if(successCallback != null)
-                    {                       
-                        successCallback(response.Content);
-                    }
+    {    
+		#region Simple Requests
+		public async void SendRequestNative(string uri, RequestHTTPMethod method, Action<string> successCallback = null, Action<string> errorCallback = null)
+		{ 
+			SendRequestNative(uri, method, null, null, successCallback, errorCallback);
+		}
+
+		public async void SendRequestNative(string uri, RequestHTTPMethod method, Dictionary<string, string> requestHeaders, Action<string> successCallback = null, Action<string> errorCallback = null)
+		{ 
+			SendRequestNative(uri, method, null, requestHeaders, successCallback, errorCallback);
+		}
+
+		public async void SendRequestNative(string uri, RequestHTTPMethod method, string data, Dictionary<string, string> requestHeaders = null, Action<string> successCallback = null, Action<string> errorCallback = null)
+		{            
+			HttpClient client = new HttpClient();
+			// Add a new Request Message
+			HttpRequestMessage requestMessage = new HttpRequestMessage(ConvertToHttpMethod(method), uri);
+			// Add our custom headers
+			if (requestHeaders != null)
+			{
+				foreach (var item in requestHeaders)
+				{
+
+					requestMessage.Headers.Add(item.Key, item.Value);
+
 				}
-            }
-            catch(Exception ex)
-            {
-                if(errorCallback != null)
-                    errorCallback(ex.Message);
-            }
-        }
+			}
+			// Add request body
+			if (data != null )
+			{				
+				byte[] array = Encoding.Unicode.GetBytes(data);
+				requestMessage.Content = new ByteArrayContent(array);
+			}
+			// Send the request to the server
+			try
+			{					
+				using(HttpResponseMessage response = await client.SendAsync(requestMessage))
+				{
+					using(HttpContent content = response.Content)
+					{
+						string result = await content.ReadAsStringAsync();
+						//T dataObj = JsonConvert.DeserializeObject<T>(loadedData);
+						if(successCallback != null)
+						{                       
+							successCallback(result);
+						}
+					}		
+				}
+			}
+			catch(Exception ex)
+			{
+				if(errorCallback != null)
+					errorCallback(ex.Message);
+			}
+			finally
+			{
+				client.Dispose();
+			}
+		}
+		#endregion
 
-        public async void SendRequest<T>(string uri, string apiCommand, object data, Action<T> successCallback, Action<string> errorCallback = null)
-        {            
-            try
-            {
-                using (var client = new RestClient(uri)) {
-					var request = apiCommand == "" ? new RestRequest() : new RestRequest(apiCommand);
-                    request.AddBody(data);
-					var response = await client.Execute<T>(request);
-                    successCallback(response.Data);                                         
-                }  
-            }
-            catch(Exception ex)
-            {
-                if(errorCallback != null)
-                    errorCallback(ex.Message);
-            }
-        }
+		#region Generic Object Request
+		public async void SendRequestNative<T>(string uri, RequestHTTPMethod method, Action<T> successCallback, Action<string> errorCallback = null)
+		{
+			SendRequestNative<T> (uri, method, null, null, successCallback, errorCallback);
+		}
 
+		public async void SendRequestNative<T>(string uri, RequestHTTPMethod method, string data, Action<T> successCallback, Action<string> errorCallback = null)
+		{
+			SendRequestNative<T> (uri, method, data, null, successCallback, errorCallback);
+		}
+
+		public async void SendRequestNative<T>(string uri, RequestHTTPMethod method, string data, Dictionary<string, string> requestHeader, Action<T> successCallback, Action<string> errorCallback = null)
+		{            
+			HttpClient client = new HttpClient();
+			// Add a new Request Message
+			HttpRequestMessage requestMessage = new HttpRequestMessage(ConvertToHttpMethod(method), uri);
+			// Add our custom headers
+			if (requestHeader != null)
+			{
+				foreach (var item in requestHeader)
+				{
+
+					requestMessage.Headers.Add(item.Key, item.Value);
+
+				}
+			}
+			// Add request body
+			if (data != null )
+			{				
+				byte[] array = Encoding.Unicode.GetBytes(data);
+				requestMessage.Content = new ByteArrayContent(array);
+			}
+			// Send the request to the server
+			try
+			{					
+				using(HttpResponseMessage response = await client.SendAsync(requestMessage))
+				{
+					using(HttpContent content = response.Content)
+					{
+						string result = await content.ReadAsStringAsync();
+						T dataObj = JsonConvert.DeserializeObject<T>(result);
+						if(successCallback != null)
+						{                       
+							successCallback(dataObj);
+						}
+					}		
+				}
+			}
+			catch(Exception ex)
+			{
+				if(errorCallback != null)
+					errorCallback(ex.Message);
+			}
+			finally
+			{
+				client.Dispose();
+			}
+		}
+		#endregion
+
+		#region Html Parsing
 		public async void ReadHTMLPage(string uri, string apiCommand, object data, ParseHtmlSettings settings, Action<List<ParsedHtmlNode>> successCallback, Action<string> errorCallback = null)
 		{            
 			try
@@ -80,6 +169,21 @@ namespace CreditRepairPrototype
 					errorCallback(ex.Message);
 			}
 		}
+		#endregion
+
+		public HttpMethod ConvertToHttpMethod(RequestHTTPMethod method){
+			switch (method) {
+			case RequestHTTPMethod.GET:
+				return HttpMethod.Get;
+			case RequestHTTPMethod.DELETE:
+				return HttpMethod.Delete;
+			case RequestHTTPMethod.POST:
+				return HttpMethod.Post;
+			case RequestHTTPMethod.PUT:
+				return HttpMethod.Put;
+			}
+			return HttpMethod.Get;
+		}       
     }   
 }
 
